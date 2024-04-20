@@ -1,0 +1,156 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+
+&sk {
+    release-after-ms = <750>;
+    quick-release;
+};
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS BSPC>;
+};
+
+#define BASE_L  0
+#define SYM_L   1
+#define NUM_L   2
+#define NAV_L   3
+
+
+/ {
+
+// TO IMPLEMENT
+/*
+    macros {
+        ZMK_MACRO(scope, wait-ms = <30>; tap-ms = <30>; bindings = <&kp COLON &kp COLON>;)
+        ZMK_MACRO(lambda, wait-ms = <30>; tap-ms = <30>; bindings = <&kp L &kp A &kp M &kp B &kp D &kp A>;)
+    };
+*/
+
+    combos {
+        compatible = "zmk,combos";
+
+        #define COMBO(NAME, BINDINGS, KEYPOS, TIMEOUT) \
+              combo_##NAME { \
+                timeout-ms = <TIMEOUT>; \
+                bindings = <BINDINGS>; \
+                key-positions = <KEYPOS>; \
+              };
+
+        /*                KEY POSITIONS
+
+          ╭────────────────────╮ ╭────────────────────╮
+          │  0   1   2   3   4 │ │  5   6   7   8   9 │
+          │ 10  11  12  13  14 │ │ 15  16  17  18  19 │
+          │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
+          ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
+                  ╰────────────╯ ╰────────────╯        */
+
+        COMBO(caps_word_left, &caps_word, 13 14, 60)
+        COMBO(caps_word_right, &caps_word, 15 16, 60)
+
+/*      
+        COMBO(grave, &kp GRAVE, 1 2, 60)
+        COMBO(colon, &kp COLON, 7 8, 60)
+        COMBO(equal, &kp EQUAL, 21 22, 60)
+        COMBO(semicolon, &kp SEMI, 27 28, 60)
+*/
+
+        COMBO(minus, &kp MINUS, 31 34, 60)
+        COMBO(underscore, &kp UNDER, 32 33, 60)
+    };
+
+    behaviors {
+        lhm: left_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <300>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            // hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33 34 35>;
+            hold-trigger-key-positions = <5 6 7 8 9 10 11 12 13 15 16 17 18 19 25 26 27 28 29 30 31 32 33 34 35>;
+        };
+
+        rhm: right_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <300>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            // hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35>;
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 16 17 18 19 20 21 22 23 24 30 31 32 33 34 35>;
+        };
+
+        base_lt: base_layer_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <300>;
+            quick-tap-ms = <200>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        rpt_lt: repeat_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <300>;
+            quick-tap-ms = <200>;
+            bindings = <&mo>, <&key_repeat>;
+        };
+    };
+
+	keymap {
+		compatible = "zmk,keymap";
+
+		base_layer {
+			bindings = <
+                   &kp Q        &kp W         &kp F              &kp P               &kp G              &kp J              &kp L                &kp U                 &kp Y         &kp APOS
+                   &lhm LSHFT A &lhm LGUI R   &lhm LALT S        &lhm LCTRL T        &kp D              &kp H              &rhm LCTRL N         &rhm RALT E           &rhm LGUI I   &rhm RSHFT O
+                   &kp Z        &kp X         &kp C              &kp V               &kp B              &kp K              &kp M                &kp COMMA             &kp DOT       &kp FSLH
+		   /*&          &*/           &base_lt NAV_L ESC &base_lt SYM_L BSPC &base_lt NUM_L TAB &base_lt NUM_L RET &base_lt SYM_L SPACE &base_lt NAV_L DEL    /*&           &*/
+			>;
+		};
+		
+		sym_layer {
+			bindings = <
+		   &none        &none         &none         &none              &none              &none               &none            &none                    &none         &none
+                   &kp EXCL     &kp AT        &kp HASH      &kp DLLR           &kp PRCNT          &kp CARET           &kp AMPS         &kp STAR                 &kp LPAR      &kp RPAR
+                   &kp BSLH     &kp STAR      &kp MINUS     &kp PLUS           &kp PIPE           &kp TILDE           &kp LBKT         &kp RBKT                 &kp COLON     &kp SEMI
+                   /*&          &*/           &kp UNDER     &kp BSPC           &kp EQUAL          &kp EQUAL           &kp SPACE        &kp UNDER                /*&           &*/
+			>;
+		};
+		
+		num_layer {
+			bindings = <
+                   &kp F1        &kp F2        &kp F3        &kp F4             &kp F5             &kp F6              &kp F7           &kp F8                   &kp F9        &kp F10
+                   &lhm LSHFT N1 &lhm LGUI N2  &lhm LALT N3  &lhm LCTRL N4      &kp N5             &kp N6              &rhm LCTRL N7    &rhm RALT N8             &rhm LGUI N9  &rhm RSHFT N0
+                   &kp BSLH      &kp STAR      &kp MINUS     &kp PLUS           &kp F11            &kp F12             &kp F7           &trans                   &trans        &trans
+		   /*&           &*/           &kp ESC       &kp BSPC           &kp EQUAL          &kp EQUAL           &kp SPACE        &kp DEL                  /*&           &*/
+			>;
+		};
+		
+		nav_layer {
+			bindings = <
+                   &trans       &trans        &trans        &trans             &bt BT_CLR         &bt BT_PRV          &bt BT_NXT       &trans                   &trans        &kp PG_UP
+                   &sk LSHFT    &sk LGUI      &sk LALT      &sk LCTRL          &trans             &kp K              &kp LEFT         &kp UP                   &kp RIGHT     &kp RIGHT
+                   &kp K_UNDO   &kp K_CUT     &kp K_COPY    &kp K_PASTE        &kp K_PREV         &kp K_NEXT          &kp HOME         &kp DOWN                 &kp END       &kp PG_DN
+                   /*&          &*/           &kp ESC       &kp BSPC           &kp TAB            &kp RET                &kp SPACE        &kp DEL                  /*&           &*/
+			>;
+		};
+		
+		
+	};
+};
+
+
+
+
