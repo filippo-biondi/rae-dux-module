@@ -21,17 +21,32 @@
 #define SYM_L   1
 #define NUM_L   2
 #define NAV_L   3
+#define ITA_L   4
 
 
 / {
 
 // TO IMPLEMENT
-/*
+
     macros {
-        ZMK_MACRO(scope, wait-ms = <30>; tap-ms = <30>; bindings = <&kp COLON &kp COLON>;)
-        ZMK_MACRO(lambda, wait-ms = <30>; tap-ms = <30>; bindings = <&kp L &kp A &kp M &kp B &kp D &kp A>;)
+//        ZMK_MACRO(scope, wait-ms = <30>; tap-ms = <30>; bindings = <&kp COLON &kp COLON>;)
+//        ZMK_MACRO(lambda, wait-ms = <30>; tap-ms = <30>; bindings = <&kp L &kp A &kp M &kp B &kp D &kp A>;)
+        
+        grave_accent: grave_accent_macro {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&kp GRAVE>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+        };
+        acute_accent: acute_accent_macro {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&kp APOS>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+        };
+        
+        ZMK_MACRO(c_e, wait-ms = <30>; tap-ms = <30>; bindings = <&kp C &kp RA(APOS) &kp GRAVE &kp E>;)
+        ZMK_MACRO(capital_c_e, wait-ms = <30>; tap-ms = <30>; bindings = <&kp LS(C) &kp RA(APOS) &kp GRAVE &kp E>;)
     };
-*/
+
 
     combos {
         compatible = "zmk,combos";
@@ -64,6 +79,7 @@
 
         COMBO(minus, &kp MINUS, 31 34, 60)
         COMBO(underscore, &kp UNDER, 32 33, 60)
+        COMBO(cololn, &kp SEMI, 30 35, 60)
     };
 
     behaviors {
@@ -106,6 +122,44 @@
             quick-tap-ms = <200>;
             bindings = <&mo>, <&key_repeat>;
         };
+        
+        td_e: tap_dance_e {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&grave_accent E>, <&acute_accent E>;
+        };
+        td_a: tap_dance_a {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&grave_accent A>, <&acute_accent A>;
+        };
+        td_i: tap_dance_i {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&grave_accent I>, <&acute_accent I>;
+        };
+        td_o: tap_dance_o {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&grave_accent O>, <&acute_accent O>;
+        };
+        td_u: tap_dance_u {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&grave_accent U>, <&acute_accent U>;
+        };
+        
+        ce: ce {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <300>;
+            bindings = <&c_e>, <&capital_c_e>;
+        };
     };
 
 	keymap {
@@ -113,8 +167,8 @@
 
 		base_layer {
 			bindings = <
-                   &kp Q        &kp W         &kp F              &kp P               &kp G              &kp J              &kp L                &kp U                 &kp Y         &kp APOS
-                   &lhm LSHFT A &lhm LGUI R   &lhm LALT S        &lhm LCTRL T        &kp D              &kp H              &rhm LCTRL N         &rhm RALT E           &rhm LGUI I   &rhm RSHFT O
+                   &kp Q        &kp W         &kp F              &kp P               &kp G              &kp J              &kp L                &kp U                 &kp Y         &kp RA(APOS)
+                   &lhm LALT A  &lhm LGUI R   &lhm LSHIFT S      &lhm LCTRL T        &base_lt ITA_L D   &base_lt ITA_L H   &rhm LCTRL N         &rhm RSHIFT E         &rhm LGUI I   &rhm LALT O
                    &kp Z        &kp X         &kp C              &kp V               &kp B              &kp K              &kp M                &kp COMMA             &kp DOT       &kp FSLH
 		   /*&          &*/           &base_lt NAV_L ESC &base_lt SYM_L BSPC &base_lt NUM_L TAB &base_lt NUM_L RET &base_lt SYM_L SPACE &base_lt NAV_L DEL    /*&           &*/
 			>;
@@ -122,17 +176,17 @@
 		
 		sym_layer {
 			bindings = <
-		   &none        &none         &none         &none              &none              &none               &none            &none                    &none         &none
-                   &kp EXCL     &kp AT        &kp HASH      &kp DLLR           &kp PRCNT          &kp CARET           &kp AMPS         &kp STAR                 &kp LPAR      &kp RPAR
-                   &kp BSLH     &kp STAR      &kp MINUS     &kp PLUS           &kp PIPE           &kp TILDE           &kp LBKT         &kp RBKT                 &kp COLON     &kp SEMI
-                   /*&          &*/           &kp UNDER     &kp BSPC           &kp EQUAL          &kp EQUAL           &kp SPACE        &kp UNDER                /*&           &*/
+		   &none        &none         &none            &none              &none              &none               &none            &none             &none         &none
+                   &kp EXCL     &kp AT        &lhm LSHIFT HASH &lhm LCTRL DLLR    &kp PRCNT          &kp CARET           &rhm LCTRL AMPS  &rhm RSHIFT STAR  &kp LPAR      &kp RPAR
+                   &kp BSLH     &kp STAR      &kp MINUS        &kp PLUS           &kp PIPE           &kp GRAVE           &kp LBKT         &kp RBKT          &kp COLON     &kp SEMI
+                   /*&          &*/           &kp UNDER        &kp BSPC           &kp EQUAL          &kp EQUAL           &kp SPACE        &kp UNDER         /*&           &*/
 			>;
 		};
 		
 		num_layer {
 			bindings = <
                    &kp F1        &kp F2        &kp F3        &kp F4             &kp F5             &kp F6              &kp F7           &kp F8                   &kp F9        &kp F10
-                   &lhm LSHFT N1 &lhm LGUI N2  &lhm LALT N3  &lhm LCTRL N4      &kp N5             &kp N6              &rhm LCTRL N7    &rhm RALT N8             &rhm LGUI N9  &rhm RSHFT N0
+                   &lhm LALT N1  &lhm LGUI N2  &lhm LSHFT N3 &lhm LCTRL N4      &kp N5             &kp N6              &rhm LCTRL N7    &rhm RSHIFT N8           &rhm LGUI N9  &rhm LALT N0
                    &kp BSLH      &kp STAR      &kp MINUS     &kp PLUS           &kp F11            &kp F12             &kp F7           &trans                   &trans        &trans
 		   /*&           &*/           &kp ESC       &kp BSPC           &kp EQUAL          &kp EQUAL           &kp SPACE        &kp DEL                  /*&           &*/
 			>;
@@ -140,17 +194,22 @@
 		
 		nav_layer {
 			bindings = <
-                   &trans       &trans        &trans        &trans             &bt BT_CLR         &bt BT_PRV          &bt BT_NXT       &trans                   &trans        &kp PG_UP
-                   &sk LSHFT    &sk LGUI      &sk LALT      &sk LCTRL          &trans             &kp K              &kp LEFT         &kp UP                   &kp RIGHT     &kp RIGHT
-                   &kp K_UNDO   &kp K_CUT     &kp K_COPY    &kp K_PASTE        &kp K_PREV         &kp K_NEXT          &kp HOME         &kp DOWN                 &kp END       &kp PG_DN
-                   /*&          &*/           &kp ESC       &kp BSPC           &kp TAB            &kp RET                &kp SPACE        &kp DEL                  /*&           &*/
+                   &trans       &trans        &trans        &trans             &bt BT_CLR         &bt BT_PRV          &bt BT_NXT       &kp K_VOL_DN             &kp K_VOL_UP  &kp K_MUTE
+                   &sk LALT    &sk LGUI       &sk LSHIFT    &sk LCTRL          &trans             &kp K_PP            &kp LEFT         &kp UP                   &kp RIGHT     &kp PG_UP
+                   &kp LC(Z)   &kp LC(X)      &kp LC(C)     &kp LC(V)          &kp K_PREV         &kp K_NEXT          &kp HOME         &kp DOWN                 &kp END       &kp PG_DN
+                   /*&          &*/           &kp ESC       &kp BSPC           &kp TAB            &kp RET             &kp SPACE        &kp DEL                  /*&           &*/
+			>;
+		};
+		
+		ita_layer {
+			bindings = <
+                   &none        &none         &none         &none              &none              &none               &none            &td_u                   &none         &none
+                   &td_a        &sk LGUI      &sk LSHIFT    &sk LCTRL          &none              &none               &none            &td_e                   &td_i         &td_o
+                   &none        &none         &ce           &none              &none              &none               &none            &none                   &none         &none 
+                   /*&          &*/           &kp ESC       &kp BSPC           &kp TAB            &kp RET             &kp SPACE        &kp DEL                  /*&           &*/
 			>;
 		};
 		
 		
 	};
 };
-
-
-
-
