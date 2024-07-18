@@ -23,8 +23,9 @@
 #define FUN_L   3
 #define DBG_L   4
 #define NAV_L   5
-#define ITA_L   6
-#define ITA_C_L 7
+#define COL_L   6
+#define ITA_L   7
+#define ITA_C_L 8
 
 #define TAPPING_TERM 200
 #define LONG_TAPPING_TERM 250
@@ -52,6 +53,9 @@
         ZMK_MACRO(c_e, wait-ms = <30>; tap-ms = <30>; bindings = <&kp C &kp RA(APOS) &kp GRAVE &kp E>;)
         ZMK_MACRO(capital_c_e, wait-ms = <30>; tap-ms = <30>; bindings = <&kp LS(C) &kp RA(APOS) &kp GRAVE &kp E>;)
         ZMK_MACRO(not_equal, wait-ms = <30>; tap-ms = <30>; bindings = <&kp EXCL &kp EQUAL>;)
+        ZMK_MACRO(col_sel, wait-ms = <50>; tap-ms = <50>; bindings = <&kp LCTRL &kt LCTRL &tog COL_L>;)
+        ZMK_MACRO(deact_col, wait-ms = <50>; tap-ms = <50>; bindings = <&kt LCTRL &tog COL_L>;)
+        ZMK_MACRO(deact_col_esc, wait-ms = <50>; tap-ms = <50>; bindings = <&kt LCTRL &tog COL_L &kp ESC>;)
     };
 
 
@@ -69,15 +73,18 @@
         /*                KEY POSITIONS
 
           ╭────────────────────╮ ╭────────────────────╮
-          │  0   1   2   3   4 │ │  5   6   7   8   9 │
-          │ 10  11  12  13  14 │ │ 15  16  17  18  19 │
-          │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
+       │  0   1   2   3   4 │ │  5   6   7   8   9 │
+       │ 10  11  12  13  14 │ │ 15  16  17  18  19 │
+       │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
           ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
-                  ╰────────────╯ ╰────────────╯        */
+                      ╰────────────╯ ╰────────────╯        */
 
         COMBO(caps_word_left, &caps_word, 13 14, COMBO_TIME, BASE_L)
         COMBO(caps_word_right, &caps_word, 15 16, COMBO_TIME, BASE_L)
-
+        
+        COMBO(key_repeat_left, &key_repeat, 31 13, COMBO_TIME, BASE_L)  
+        COMBO(key_repeat_right, &key_repeat, 31 16, COMBO_TIME, BASE_L)
+        
         COMBO(equal, &kp EQUAL, 31 34, COMBO_TIME, BASE_L)
         COMBO(underscore, &kp UNDER, 32 33, COMBO_TIME, BASE_L)
         COMBO(underscore_1, &kp UNDER, 31 33, COMBO_TIME, BASE_L)
@@ -87,10 +94,10 @@
 
         COMBO(left_par, &kp LPAR, 12 13, COMBO_TIME, BASE_L NUM_L SYM_L)
         COMBO(right_par, &kp RPAR, 16 17, COMBO_TIME, BASE_L NUM_L SYM_L)
-        COMBO(left_bracket, &kp LBKT, 22 23, COMBO_TIME, BASE_L NUM_L SYM_L)
-        COMBO(right_bracket, &kp RBKT, 26 27, COMBO_TIME, BASE_L NUM_L SYM_L)
-        COMBO(left_curly_bracket, &kp LEFT_BRACE, 11 12, COMBO_TIME, BASE_L NUM_L SYM_L)
-        COMBO(right_curly_bracket, &kp RIGHT_BRACE, 17 18, COMBO_TIME, BASE_L NUM_L SYM_L)
+        COMBO(left_bracket, &kp LBKT, 11 13, COMBO_TIME, BASE_L NUM_L SYM_L)
+        COMBO(right_bracket, &kp RBKT, 16 18, COMBO_TIME, BASE_L NUM_L SYM_L)
+        COMBO(left_curly_bracket, &kp LEFT_BRACE, 31 12, COMBO_TIME, BASE_L NUM_L SYM_L)
+        COMBO(right_curly_bracket, &kp RIGHT_BRACE, 31 17, COMBO_TIME, BASE_L NUM_L SYM_L)
         
         COMBO(plus, &kp PLUS, 23 26, COMBO_TIME, BASE_L NUM_L SYM_L)
         COMBO(times, &kp STAR, 22 27, COMBO_TIME, BASE_L NUM_L SYM_L)     
@@ -152,7 +159,7 @@
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <TAPPING_TERM>;
-            quick-tap-ms = <200>;
+//            quick-tap-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
 
@@ -174,67 +181,24 @@
             bindings = <&mo>, <&key_repeat>;
         };
         
-        td_e: tap_dance_e {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent E>, <&acute_accent E>;
-        };
-        td_a: tap_dance_a {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent A>, <&acute_accent A>;
-        };
-        td_i: tap_dance_i {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent I>, <&acute_accent I>;
-        };
-        td_o: tap_dance_o {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent O>, <&acute_accent O>;
-        };
-        td_u: tap_dance_u {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent U>, <&acute_accent U>;
-        };
-        td_e_capital: tap_dance_e_capital {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent LS(E)>, <&acute_accent LS(E)>;
-        };
-        td_a_capital: tap_dance_a_capital {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent LS(A)>, <&acute_accent LS(A)>;
-        };
-        td_i_capital: tap_dance_i_capital {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent LS(I)>, <&acute_accent LS(I)>;
-        };
-        td_o_capital: tap_dance_o_capital {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent LS(O)>, <&acute_accent LS(O)>;
-        };
-        td_u_capital: tap_dance_u_capital {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&grave_accent LS(U)>, <&acute_accent LS(U)>;
+#define TAP_DANCE(NAME, CODE) \
+        td_##NAME: tap_dance_##NAME { \
+        compatible = "zmk,behavior-tap-dance"; \
+        #binding-cells = <0>; \
+        tapping-term-ms = <TAPPING_TERM>; \
+        bindings = <&grave_accent CODE>, <&acute_accent CODE>; \
         };
         
+        TAP_DANCE(e, E)
+        TAP_DANCE(a, A)
+        TAP_DANCE(i, I)
+        TAP_DANCE(o, O)
+        TAP_DANCE(u, U)
+        TAP_DANCE(e_capital, LS(E))
+        TAP_DANCE(a_capital, LS(A))
+        TAP_DANCE(i_capital, LS(I))
+        TAP_DANCE(o_capital, LS(O))
+        TAP_DANCE(u_capital, LS(U))
         
         quick_lt: quick_layer_hold_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -245,15 +209,7 @@
             hold-while-undecided;
         };
        
-        
-        power_off_td: tap_dance_sleep {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM>;
-            bindings = <&none>, <&none>, <&kp LA(LG(LS(LC(GRAVE))))>;
-        };
-        
-
+       
         qhm: quick_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -263,19 +219,12 @@
             bindings = <&kp>, <&kp>;
         };
 
-/*        copy_td: tap_dance_copy {
+        power_off_td: tap_dance_sleep {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&quick_hm LSHIFT LC(C)>, <&kp LC(LS(C))>;
+            tapping-term-ms = <TAPPING_TERM>;
+            bindings = <&none>, <&none>, <&kp LA(LG(LS(LC(GRAVE))))>;
         };
-        paste_td: tap_dance_paste {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&quick_hm LCTRL LC(V)>, <&kp LC(LS(V))>;
-        };
-*/
     };
 
 	keymap {
@@ -290,30 +239,21 @@
 			>;
 		};
 		
-//		sym_layer {
-//			bindings = <
-//		   &kp C_SLEEP    &none         &none            &none              &none              &none               &none            &none             &none          &power_off_td 
-//                   &lhm LALT EXCL &lhm LGUI AT  &lhm LSHIFT HASH &lhm LCTRL DLLR    &kp PRCNT          &kp CARET           &rhm LCTRL AMPS  &rhm RSHIFT STAR  &rhm LGUI LPAR &rhm LALT RPAR
-//                   &kp BSLH       &none         &kp LBRC         &kp RBRC           &kp TILDE          &kp GRAVE           &kp LBKT         &kp RBKT          &none          &kp PIPE
-//                   /*&            &*/           &kp ESC          &kp BSPC           &kp TAB            &kp RET             &kp SPACE        &kp DEL           /*&           &*/
-//			>;
-//		};
-		
 		sym_layer {
 			bindings = <
-		   &none          &none         &none            &none              &none              &none           &none         &none               &none       &none 
+		   &none          &none         &none            &none              &none              &none           &none         &none               &none       &kp RA(APOS) 
                    &kp EXCL       &kp AT        &kp HASH         &kp DLLR           &kp PRCNT          &none           &sk LCTRL     &sk RSHIFT          &sk LGUI    &sk LALT
-                   &kp BSLH       &kp PIPE      &kp TILDE        &kp AMPS           &kp GRAVE          &none           &none         &trans              &trans      &trans
+                   &kp BSLH       &kp PIPE      &kp TILDE        &kp AMPS           &kp GRAVE          &none           &none         &trans              &trans      &kp FSLH
                    /*&            &*/           &kp ESC          &kp BSPC           &kp TAB            &kp RET         &kp SPACE     &base_lt NAV_L DEL  /*&           &*/
 			>;
 		};
 		
 		num_layer {
 			bindings = <
-                   &none         &none         &none             &none              &none              &none         &kp N7         &kp N8                &kp N9      &none
-                   &kp LALT      &kp LGUI      &lhm LSHFT COMMA  &lhm LCTRL DOT     &kp CARET          &none         &kp N4         &kp N5                &kp N6      &kp N0
-                   &none         &none         &none             &none              &none              &none         &kp N1         &kp N2                &kp N3      &trans
-		   /*&           &*/           &kp ESC           &kp BSPC           &kp TAB            &kp UNDER     &kp SPACE      &base_lt NAV_L MINUS  /*&         &*/
+                   &none         &none           &none             &none              &none              &none         &kp N7         &kp N8                &kp N9      &kp RA(APOS)
+                   &kp LALT      &lhm LGUI CARET &lhm LSHFT COMMA  &lhm LCTRL DOT     &none              &none         &kp N4         &kp N5                &kp N6      &kp N0
+                   &none         &none           &kp COMMA         &none              &none              &none         &kp N1         &kp N2                &kp N3      &kp FSLH
+		   /*&           &*/             &kp ESC           &kp BSPC           &kp TAB            &kp UNDER     &kp SPACE      &base_lt NAV_L MINUS  /*&         &*/
 			>;
 		};
 		
@@ -337,10 +277,19 @@
 		
 		nav_layer {
 			bindings = <
-                   &bt BT_CLR_ALL  &bt BT_CLR      &bt BT_SEL 0      &bt BT_PRV         &bt BT_NXT         &kp LC(MINUS)       &kp LC(PLUS)     &kp K_VOL_DN             &kp K_VOL_UP  &kp K_MUTE
-                   &lhm LALT LC(Z) &lhm LGUI LC(X) &qhm LSHIFT LC(C) &qhm LCTRL LC(V)   &kp LA(TAB)        &kp K_PP            &kp LEFT         &kp UP                   &kp RIGHT     &kp PG_UP
-                   &none           &none           &kp LC(LS(C))     &kp LC(LS(V))      &kp K_PREV         &kp K_NEXT          &kp HOME         &kp DOWN                 &kp END       &kp PG_DN
-                   /*&             &*/             &tog NAV_L        &kp BSPC           &kp TAB            &kp RET             &kp SPACE        &kp DEL                  /*&           &*/
+                   &bt BT_CLR_ALL  &bt BT_CLR      &bt BT_SEL 0      &bt BT_PRV         &bt BT_NXT         &kp LC(MINUS)       &kp LC(PLUS)     &col_sel              &kp K_VOL_DN    &kp K_VOL_UP
+                   &lhm LALT LC(Z) &lhm LGUI LC(X) &qhm LSHIFT LC(C) &qhm LCTRL LC(V)   &kp LA(TAB)        &kp K_PP            &kp LEFT         &kp UP                &kp RIGHT       &kp PG_UP
+                   &none           &none           &kp LC(LS(C))     &kp LC(LS(V))      &kp K_PREV         &kp K_NEXT          &kp HOME         &kp DOWN              &kp END         &kp PG_DN
+                   /*&             &*/             &tog NAV_L        &kp BSPC           &kp TAB            &kp RET             &kp SPACE        &kp DEL               /*&             &*/
+			>;
+		};
+		
+		col_sel_layer {
+			bindings = <
+                   &none        &none         &none           &none              &none              &none               &none            &deact_col_esc          &none         &none
+                   &kp Z        &kp X         &kp C           &kp V              &none              &none               &kp LEFT         &kp UP                  &kp RIGHT     &none
+                   &none        &none         &none           &none              &none              &none               &kp HOME         &kp DOWN                &kp END       &none 
+                   /*&          &*/           &deact_col_esc  &kp BSPC           &kp TAB            &kp RET             &deact_col       &deact_col              /*&           &*/
 			>;
 		};
 		
@@ -358,7 +307,7 @@
                    &none         &none         &none         &none              &none              &none               &none            &td_u_capital           &none         &none
                    &td_a_capital &none         &none         &none              &none              &none               &none            &td_e_capital           &td_i_capital &td_o_capital
                    &none         &none         &capital_c_e  &none              &none              &none               &none            &none                   &none         &none 
-                   /*&          &*/           &kp ESC       &kp BSPC           &kp TAB            &kp RET             &kp SPACE        &kp DEL                  /*&           &*/
+                   /*&          &*/            &kp ESC       &kp BSPC           &kp TAB            &kp RET             &kp SPACE        &kp DEL                 /*&           &*/
 			>;
 		};		
 	};
