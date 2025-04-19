@@ -1,0 +1,48 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1729307008,
+        "narHash": "sha256-QUvb6epgKi9pCu9CttRQW4y5NqJ+snKr1FZpG/x3Wtc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a9b86fc2290b69375c5542b622088eb6eca2a7c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "zmk-nix": "zmk-nix"
+      }
+    },
+    "zmk-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729512987,
+        "narHash": "sha256-wl+a5P+KFz58SmnJ3HV/QsPZeLbFTq13UWe1X5QR9+I=",
+        "owner": "filippo-biondi",
+        "repo": "zmk-nix",
+        "rev": "6fcf544aef33b106fcb306407f8a3fa155baaf0f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "filippo-biondi",
+        "repo": "zmk-nix",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

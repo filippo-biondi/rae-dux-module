@@ -1,0 +1,17 @@
+description: Magic Key behavior
+
+compatible: "zmk,behavior-magic-key"
+
+include: zero_param.yaml
+
+properties:
+  usage-pages:
+    type: array
+    required: true
+  dictionary-keys:
+    type: array
+    required: true
+    default: []
+  bindings:
+    type: phandle-array
+    required: true

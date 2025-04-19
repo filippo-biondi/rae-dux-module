@@ -1,0 +1,11 @@
+file_format: "1"
+id: rae_dux_24
+name: Rae Dux 24
+type: shield
+url: https://github.com/filippo-biondi/rae-dux
+requires: [nice_nano_v2]
+features:
+  - keys
+siblings:
+  - rae_dux_24_left
+  - rae_dux_24_right

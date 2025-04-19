@@ -1,0 +1,16 @@
+#include <dt-bindings/zmk/behaviors.h>
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    behaviors {
+#if ZMK_BEHAVIOR_OMIT(MAGIC_KEY)
+    /omit-if-no-ref/
+#endif
+        magic_key: magic_key {
+            compatible = "zmk,behavior-magic-key";
+            #binding-cells = <0>;
+            usage-pages = <HID_USAGE_KEY>;
+            display-name = "Magic Key";
+        };
+    };
+};

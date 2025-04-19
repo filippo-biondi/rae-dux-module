@@ -1,17 +1,17 @@
-if SHIELD_RAE_DUX_LEFT
+if SHIELD_RAE_DUX_24_LEFT
 
 config ZMK_KEYBOARD_NAME
-    default "Rae Dux Master"
+    default "Rae Dux 24 M"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
 endif
 
-if SHIELD_RAE_DUX_RIGHT
+if SHIELD_RAE_DUX_24_RIGHT
 
 config ZMK_KEYBOARD_NAME
-    default "Rae Dux Slave"
+    default "Rae Dux 24 S"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default n
@@ -19,7 +19,7 @@ config ZMK_SPLIT_ROLE_CENTRAL
 
 endif
 
-if SHIELD_RAE_DUX_LEFT || SHIELD_RAE_DUX_RIGHT
+if SHIELD_RAE_DUX_24_LEFT || SHIELD_RAE_DUX_24_RIGHT
 
 config ZMK_SPLIT
     default y

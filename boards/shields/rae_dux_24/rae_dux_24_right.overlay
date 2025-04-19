@@ -1,0 +1,5 @@
+#include "rae_dux_24.dtsi"
+
+&default_transform {
+	col-offset = <18>;
+};

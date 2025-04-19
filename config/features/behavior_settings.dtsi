@@ -1,0 +1,13 @@
+&sk {
+    release-after-ms = <750>;
+    quick-release;
+};
+
+&sl {
+    release-after-ms = <1000>;
+};
+
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS BSPC>;
+};

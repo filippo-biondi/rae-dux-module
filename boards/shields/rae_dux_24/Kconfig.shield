@@ -1,0 +1,5 @@
+config SHIELD_RAE_DUX_24_LEFT
+    def_bool $(shields_list_contains,rae_dux_24_left)
+
+config SHIELD_RAE_DUX_24_RIGHT
+    def_bool $(shields_list_contains,rae_dux_24_right)

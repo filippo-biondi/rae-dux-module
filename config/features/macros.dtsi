@@ -1,0 +1,30 @@
+/ {
+	macros {
+		grave_accent: grave_accent_macro {
+		    compatible = "zmk,behavior-macro-one-param";
+		    #binding-cells = <1>;
+		    bindings = <&kp GRAVE>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+		};
+		acute_accent: acute_accent_macro {
+		    compatible = "zmk,behavior-macro-one-param";
+		    #binding-cells = <1>;
+		    bindings = <&kp APOS>, <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+		};
+		soft_off_param: soft_off_param_macro {
+		    compatible = "zmk,behavior-macro-one-param";
+		    #binding-cells = <1>;
+		    bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>,  <&soft_off>;
+		};
+
+		ZMK_MACRO(double_caret, wait-ms = <40>; tap-ms = <40>; bindings = <&kp CARET &kp CARET>;)
+		ZMK_MACRO(double_grave, wait-ms = <40>; tap-ms = <40>; bindings = <&kp GRAVE &kp GRAVE>;)
+		ZMK_MACRO(double_tilde, wait-ms = <40>; tap-ms = <40>; bindings = <&kp TILDE &kp TILDE>;)
+		ZMK_MACRO(c_e, wait-ms = <40>; tap-ms = <40>; bindings = <&kp C &kp RA(APOS) &kp GRAVE &kp E>;)
+		ZMK_MACRO(capital_c_e, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LS(C) &kp RA(APOS) &kp GRAVE &kp E>;)
+		ZMK_MACRO(not_equal, wait-ms = <40>; tap-ms = <40>; bindings = <&kp EXCL &kp EQUAL>;)
+
+		ZMK_MACRO(c_par, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LPAR &kp RPAR &kp LEFT>;)
+		ZMK_MACRO(c_brack, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LBKT &kp RBKT &kp LEFT>;)
+		ZMK_MACRO(c_curl, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE &kp LEFT>;)
+	};
+};
