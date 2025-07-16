@@ -1,9 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     zmk-nix = {
       url = "github:filippo-biondi/zmk-nix";
+      # url = "path:/Users/filippo/keyboard/zmk-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -17,14 +18,29 @@
       firmware = zmk-nix.legacyPackages.${system}.buildSplitKeyboard {
         name = "firmware";
 
-        src = nixpkgs.lib.sourceFilesBySuffices self [ ".board" ".cmake" ".conf" ".defconfig" ".dts" ".dtsi" ".json" ".keymap" ".overlay" ".shield" ".yml" "_defconfig" ];
+        src = nixpkgs.lib.sourceFilesBySuffices self [
+          ".board"
+          ".cmake"
+          ".conf"
+          ".defconfig"
+          ".dts"
+          ".dtsi"
+          ".json"
+          ".keymap"
+          ".overlay"
+          ".shield"
+          ".yml"
+          "_defconfig"
+          ".txt"
+          ".c"
+          ".h"
+          ".yaml"
+        ];
 
         board = "nice_nano_v2";
         shield = "rae_dux_%PART%";
-        
-	module = "./.";
 
-        zephyrDepsHash = "sha256-h2Gnbm6T581oSwTKmfXVb8fHXDz5WpF7CtJDh/gXGT0=";
+        zephyrDepsHash = "sha256-lzXi0+wJ2CgpRzP0x1RJWXsk7arVXw30zU/sGee3vkc=";
 
         meta = {
           description = "ZMK firmware";

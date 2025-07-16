@@ -19,34 +19,30 @@
 	combos {
 		compatible = "zmk,combos";
 
-		COMBO(caps_word_left, &caps_word, 13 14, COMBO_TIME, BASE_L TRY_L GAM_L)
-		COMBO(caps_word_right, &caps_word, 15 16, COMBO_TIME, BASE_L TRY_L GAM_L)
+		COMBO(caps_word_left, &caps_word, 13 14, COMBO_TIME, BASE_L TRY_L)
+		COMBO(caps_word_right, &caps_word, 15 16, COMBO_TIME, BASE_L TRY_L)
 
-		COMBO(equal, &kp EQUAL, 12 17, COMBO_TIME, BASE_L TRY_L GAM_L)
-		COMBO(underscore, &kp UNDER, 31 34, COMBO_TIME, BASE_L TRY_L GAM_L)
-		COMBO(minus_1, &kp MINUS, 30 34, COMBO_TIME_LONG, BASE_L TRY_L GAM_L)
-		COMBO(minus_2, &kp MINUS, 35 31, COMBO_TIME_LONG, BASE_L TRY_L GAM_L)
+		COMBO(equal, &kp EQUAL, 12 17, COMBO_TIME, BASE_L TRY_L)
+		COMBO(underscore, &kp UNDER, 31 34, COMBO_TIME, BASE_L TRY_L)
+		COMBO(minus_1, &kp MINUS, 30 34, COMBO_TIME_LONG, BASE_L TRY_L)
+		COMBO(minus_2, &kp MINUS, 35 31, COMBO_TIME_LONG, BASE_L TRY_L)
 
-		COMBO(left_par, &kp LPAR, 13 3, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(right_par, &kp RPAR, 16 6, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(left_bracket, &kp LBKT, 13 23, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(right_bracket, &kp RBKT, 16 26, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(left_curly_bracket, &kp LEFT_BRACE, 12 2, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(right_curly_bracket, &kp RIGHT_BRACE, 17 7, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(couple_par, &c_par, 13 3 16 6, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(couple_brack, &c_brack, 13 23 16 26, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(couple_curly, &c_curl, 12 2 17 7, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
+		COMBO(couple_par, &c_par, 16 6, COMBO_TIME, NUM_L)
+    COMBO(couple_curly, &c_curl, 17 7, COMBO_TIME, NUM_L)
+		COMBO(couple_brack, &c_brack, 18 8, COMBO_TIME, NUM_L)
 
-		COMBO(colon, &kp COLON, 13 16, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(semicolon_1, &kp SEMI, 12 16, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(semicolon_2, &kp SEMI, 13 17, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(caret, &double_caret, 11 18, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
-		COMBO(backslash, &kp BSLH, 10 19, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L GAM_L)
+		COMBO(colon, &kp COLON, 13 16, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L)
+		COMBO(semicolon_1, &kp SEMI, 12 16, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L)
+		COMBO(semicolon_2, &kp SEMI, 13 17, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L)
 
-		COMBO(select_all, &kp LC(A), 11 12 13, COMBO_TIME_LONG, NAV_L TRY_L GAM_L)
+		COMBO(select_all, &kp LC(A), 11 12 13, COMBO_TIME_LONG, NAV_L TRY_L)
 
-		COMBO(activities, &kp LC(SPACE), 32 11, COMBO_TIME, BASE_L TRY_L GAM_L)
+		COMBO(activities, &kp LC(SPACE), 32 11, COMBO_TIME, BASE_L TRY_L)
 		COMBO(gaming, &tog GAM_L, 33 34 35, COMBO_TIME_LONG, BASE_L GAM_L)
-		COMBO(try_qwerty, &tog TRY_L, 30 31 32, COMBO_TIME_LONG, BASE_L TRY_L)
+    COMBO(try_qwerty, &tog TRY_L, 30 31 32, COMBO_TIME_LONG, BASE_L TRY_L)
+
+    COMBO(cmd_x, &kp LG(X), 1 11, COMBO_TIME, GAM_L)
+    COMBO(cmd_c, &kp LG(C), 2 12, COMBO_TIME, GAM_L)
+    COMBO(cmd_v, &kp LG(V), 3 13, COMBO_TIME, GAM_L)
 	};
 };

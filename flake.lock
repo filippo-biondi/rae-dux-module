@@ -2,16 +2,16 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1729307008,
-        "narHash": "sha256-QUvb6epgKi9pCu9CttRQW4y5NqJ+snKr1FZpG/x3Wtc=",
+        "lastModified": 1752480373,
+        "narHash": "sha256-JHQbm+OcGp32wAsXTE/FLYGNpb+4GLi5oTvCxwSoBOA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a9b86fc2290b69375c5542b622088eb6eca2a7c3",
+        "rev": "62e0f05ede1da0d54515d4ea8ce9c733f12d9f08",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-24.05",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729512987,
-        "narHash": "sha256-wl+a5P+KFz58SmnJ3HV/QsPZeLbFTq13UWe1X5QR9+I=",
+        "lastModified": 1744506131,
+        "narHash": "sha256-BXNK66nGzOKVxe2BjPVpiBS2kPcy/TG6lfy7oaCKUv4=",
         "owner": "filippo-biondi",
         "repo": "zmk-nix",
-        "rev": "6fcf544aef33b106fcb306407f8a3fa155baaf0f",
+        "rev": "95424f02c90397b673bdd64f2a61800a625e1eba",
         "type": "github"
       },
       "original": {

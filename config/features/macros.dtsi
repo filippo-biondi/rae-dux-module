@@ -23,8 +23,8 @@
 		ZMK_MACRO(capital_c_e, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LS(C) &kp RA(APOS) &kp GRAVE &kp E>;)
 		ZMK_MACRO(not_equal, wait-ms = <40>; tap-ms = <40>; bindings = <&kp EXCL &kp EQUAL>;)
 
-		ZMK_MACRO(c_par, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LPAR &kp RPAR &kp LEFT>;)
-		ZMK_MACRO(c_brack, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LBKT &kp RBKT &kp LEFT>;)
-		ZMK_MACRO(c_curl, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE &kp LEFT>;)
+		ZMK_MACRO(c_par, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LPAR &kp RPAR>;)
+		ZMK_MACRO(c_brack, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LBKT &kp RBKT>;)
+		ZMK_MACRO(c_curl, wait-ms = <40>; tap-ms = <40>; bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE>;)
 	};
 };

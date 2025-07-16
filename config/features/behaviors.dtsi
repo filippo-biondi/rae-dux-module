@@ -5,7 +5,12 @@
 	  │ 10  11  12  13  14 │ │ 15  16  17  18  19 │
 	  │ 20  21  22  23  24 │ │ 25  26  27  28  29 │
 	  ╰───────╮ 30  31  32 │ │ 33  34  35 ╭───────╯
-		  ╰────────────╯ ╰────────────╯        */
+      		  ╰────────────╯ ╰────────────╯          */
+
+#define TAPPING_TERM 200
+#define LONG_TAPPING_TERM 250
+#define QUICK_TAPPING_TERM 200
+#define LONG_LONG_TAPPING_TERM 500
 
 #define TAP_DANCE(NAME, CODE, BEHAV_1, BEHAV_2) \
         td_##NAME: tap_dance_##NAME { \
@@ -30,7 +35,8 @@
 		    tapping-term-ms = <TAPPING_TERM>;
 		    quick-tap-ms = <QUICK_TAPPING_TERM>;
 		    bindings = <&kp>, <&kp>;
-		    hold-trigger-key-positions = <0 1 5 6 7 8 9 10 11 12 13 15 16 17 18 19 20 21 25 26 27 28 29 30 31 32 33 34 35>;
+		    hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33 34 35>;
+        hold-trigger-on-release;
 		};
 
 		elhm: extreme_left_hand_positional_hold_tap {
@@ -40,8 +46,8 @@
 		    tapping-term-ms = <LONG_TAPPING_TERM>;
 		    quick-tap-ms = <QUICK_TAPPING_TERM>;
 		    bindings = <&kp>, <&kp>;
-		    hold-trigger-key-positions = <3 4 5 6 7 8 9 13 14 15 16 17 18 19 23 24 25 26 27 28 29 30 31 32 33 34 35>;
-		    retro-tap;
+		    hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33 34 35>;
+        hold-trigger-on-release;
 		};
 
 		rhm: right_hand_positional_hold_tap {
@@ -51,7 +57,8 @@
 		    tapping-term-ms = <TAPPING_TERM>;
 		    quick-tap-ms = <QUICK_TAPPING_TERM>;
 		    bindings = <&kp>, <&kp>;
-		    hold-trigger-key-positions = <0 1 2 3 4 8 9 10 11 12 13 14 16 17 18 19 20 21 22 23 24 28 29 30 31 32 33 34 35>;
+		    hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35>;
+        hold-trigger-on-release;
 		};
 
 		erhm: extreme_right_hand_positional_hold_tap {
@@ -61,15 +68,15 @@
 		    tapping-term-ms = <LONG_TAPPING_TERM>;
 		    quick-tap-ms = <QUICK_TAPPING_TERM>;
 		    bindings = <&kp>, <&kp>;
-		    hold-trigger-key-positions = <0 1 2 3 4 5 6 10 11 12 13 14 15 16 20 21 22 23 24 25 26 30 31 32 33 34 35>;
-		    retro-tap;
+		    hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35>;
+        hold-trigger-on-release;
 		};
 
 		qhm: quick_hold_tap {
 		    compatible = "zmk,behavior-hold-tap";
 		    #binding-cells = <2>;
 		    flavor = "hold-preferred";
-		    tapping-term-ms = <750>;
+		    tapping-term-ms = <LONG_LONG_TAPPING_TERM>;
 		    quick-tap-ms = <QUICK_TAPPING_TERM>;
 		    bindings = <&kp>, <&kp>;
 		};
@@ -86,7 +93,7 @@
 		    compatible = "zmk,behavior-hold-tap";
 		    #binding-cells = <2>;
 		    flavor = "tap-preferred";
-		    tapping-term-ms = <LONG_TAPPING_TERM>;
+		    tapping-term-ms = <TAPPING_TERM>;
 		    bindings = <&mo>, <&kp>;
 		};
 
@@ -141,12 +148,11 @@
 		    bindings = <&mo>, <&key_repeat>;
 		};
 
-		magic_key: magic_key {
-		    compatible = "zmk,behavior-magic-key";
+		plus_star: plus_star_morph {
+		    compatible = "zmk,behavior-mod-morph";
 		    #binding-cells = <0>;
-		    usage-pages = <HID_USAGE_KEY>;
-		    dictionary-keys = <A E I O U>;
-		    bindings = <&kp F14>, <&kp LS(E)>, <&kp LS(I)>, <&kp LS(O)>, <&kp LS(U)>;
+		    bindings = <&kp PLUS>, <&kp STAR>;
+		    mods = <(MOD_LSFT|MOD_RSFT)>;
 		};
 	};
 };

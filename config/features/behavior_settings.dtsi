@@ -7,7 +7,6 @@
     release-after-ms = <1000>;
 };
 
-
 &caps_word {
     continue-list = <UNDERSCORE MINUS BSPC>;
 };
