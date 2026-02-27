@@ -29,15 +29,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1744506131,
-        "narHash": "sha256-BXNK66nGzOKVxe2BjPVpiBS2kPcy/TG6lfy7oaCKUv4=",
-        "owner": "filippo-biondi",
+        "lastModified": 1771721465,
+        "narHash": "sha256-/47/2x3rXdbBLo5Rp1wFDqE+DBTxL9uhKnIGa+onzec=",
+        "owner": "lilyinstarlight",
         "repo": "zmk-nix",
-        "rev": "95424f02c90397b673bdd64f2a61800a625e1eba",
+        "rev": "c53f8e1775f9c15baa40179a4565126137940b13",
         "type": "github"
       },
       "original": {
-        "owner": "filippo-biondi",
+        "owner": "lilyinstarlight",
         "repo": "zmk-nix",
         "type": "github"
       }

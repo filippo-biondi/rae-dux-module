@@ -3,7 +3,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     zmk-nix = {
-      url = "github:filippo-biondi/zmk-nix";
+      url = "github:lilyinstarlight/zmk-nix";
       # url = "path:/Users/filippo/keyboard/zmk-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -40,7 +40,7 @@
         board = "nice_nano";
         shield = "rae_dux_%PART%";
 
-        zephyrDepsHash = "sha256-26ff5fTCqnZ+AV8anVy7L1vekIRgSubPYTD0Ypu5zBs=";
+        zephyrDepsHash = "sha256-mUJpGWlU+rGbcWtKs/SuombCJ3RcIDMTiuMicwLX1D4=";
 
         meta = {
           description = "ZMK firmware";
