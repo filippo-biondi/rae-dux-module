@@ -9,16 +9,9 @@
 
 #define TAPPING_TERM 200
 #define LONG_TAPPING_TERM 250
-#define QUICK_TAPPING_TERM 200
+#define QUICK_TAPPING_TERM 0
 #define LONG_LONG_TAPPING_TERM 500
 
-#define TAP_DANCE(NAME, CODE, BEHAV_1, BEHAV_2) \
-        td_##NAME: tap_dance_##NAME { \
-        compatible = "zmk,behavior-tap-dance"; \
-        #binding-cells = <0>; \
-        tapping-term-ms = <TAPPING_TERM>; \
-        bindings = <BEHAV_1 CODE>, <BEHAV_2 CODE>; \
-        };
 
 / {
 	behaviors {
@@ -97,26 +90,6 @@
 		    bindings = <&mo>, <&kp>;
 		};
 
-		TAP_DANCE(e, E, &grave_accent, &acute_accent)
-		TAP_DANCE(a, A, &grave_accent, &acute_accent)
-		TAP_DANCE(i, I, &grave_accent, &acute_accent)
-		TAP_DANCE(o, O, &grave_accent, &acute_accent)
-		TAP_DANCE(u, U, &grave_accent, &acute_accent)
-		TAP_DANCE(e_cap, LS(E), &grave_accent, &acute_accent)
-		TAP_DANCE(a_cap, LS(A), &grave_accent, &acute_accent)
-		TAP_DANCE(i_cap, LS(I), &grave_accent, &acute_accent)
-		TAP_DANCE(o_cap, LS(O), &grave_accent, &acute_accent)
-		TAP_DANCE(u_cap, LS(U), &grave_accent, &acute_accent)
-
-		td_a_lt: macro_layer_hold_tap {
-		    compatible = "zmk,behavior-hold-tap";
-		    #binding-cells = <2>;
-		    flavor = "tap-preferred";
-		    tapping-term-ms = <TAPPING_TERM>;
-		    quick-tap-ms = <QUICK_TAPPING_TERM>;
-		    bindings = <&mo>, <&td_a>;
-		};
-
 		power_off_td: tap_dance_sleep {
 		    compatible = "zmk,behavior-tap-dance";
 		    #binding-cells = <0>;
@@ -140,19 +113,20 @@
 		    bindings = <&mo>, <&bspc_del>;
 		};
 
-		repeat_lt: repeat_layer_hold_tap {
+		colon_semi: colon_semicolon_morph {
+		    compatible = "zmk,behavior-mod-morph";
+		    #binding-cells = <0>;
+		    bindings = <&kp COLON>, <&kp SEMI>;
+		    mods = <(MOD_LSFT|MOD_RSFT)>;
+		};
+
+		colon_semi_lt: colon_semicolon_layer_hold_tap {
 		    compatible = "zmk,behavior-hold-tap";
 		    #binding-cells = <2>;
 		    flavor = "balanced";
 		    tapping-term-ms = <TAPPING_TERM>;
-		    bindings = <&mo>, <&key_repeat>;
-		};
-
-		plus_star: plus_star_morph {
-		    compatible = "zmk,behavior-mod-morph";
-		    #binding-cells = <0>;
-		    bindings = <&kp PLUS>, <&kp STAR>;
-		    mods = <(MOD_LSFT|MOD_RSFT)>;
+		    quick-tap-ms = <QUICK_TAPPING_TERM>;
+		    bindings = <&mo>, <&colon_semi>;
 		};
 	};
 };

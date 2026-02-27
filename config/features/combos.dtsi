@@ -31,10 +31,6 @@
     COMBO(couple_curly, &c_curl, 17 7, COMBO_TIME, NUM_L)
 		COMBO(couple_brack, &c_brack, 18 8, COMBO_TIME, NUM_L)
 
-		COMBO(colon, &kp COLON, 13 16, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L)
-		COMBO(semicolon_1, &kp SEMI, 12 16, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L)
-		COMBO(semicolon_2, &kp SEMI, 13 17, COMBO_TIME, BASE_L NUM_L SYM_L TRY_L)
-
 		COMBO(select_all, &kp LC(A), 11 12 13, COMBO_TIME_LONG, NAV_L TRY_L)
 
 		COMBO(activities, &kp LC(SPACE), 32 11, COMBO_TIME, BASE_L TRY_L)

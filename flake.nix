@@ -37,10 +37,10 @@
           ".yaml"
         ];
 
-        board = "nice_nano_v2";
+        board = "nice_nano";
         shield = "rae_dux_%PART%";
 
-        zephyrDepsHash = "sha256-lzXi0+wJ2CgpRzP0x1RJWXsk7arVXw30zU/sGee3vkc=";
+        zephyrDepsHash = "sha256-26ff5fTCqnZ+AV8anVy7L1vekIRgSubPYTD0Ypu5zBs=";
 
         meta = {
           description = "ZMK firmware";

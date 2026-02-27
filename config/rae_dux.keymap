@@ -10,15 +10,15 @@
 
 #define BASE_L    0
 #define GAM_L     1
-#define GAM_NUM_L 2
-#define TRY_L     3
-#define SYM_L     4
-#define NUM_L     5
-#define FUN_L     6
-#define NAV_L     7
-#define SYS_L     8
-#define ITA_L     9
-#define ITA_C_L   10
+#define GAM_SCT_L 2
+#define GAM_NUM_L 3
+#define TRY_L     4
+#define SYM_L     5
+#define NUM_L     6
+#define FUN_L     7
+#define NAV_L     8
+#define WIN_L     9
+#define SYS_L     10
 
 #define COMBO_TIME 30
 #define COMBO_TIME_LONG 60
@@ -34,19 +34,28 @@
 
 		base_layer {
 			bindings = <
-        &kp B        &kp L         &kp D               &kp W                &kp Z              &kp APOS           &kp F                &kp O                 &kp U         &kp J
-        &elhm LALT N &elhm LGUI R  &lhm LSHIFT T       &lhm LCTRL S         &kp G              &kp Y              &rhm LCTRL H         &rhm RSHIFT A         &erhm LGUI E  &erhm LALT I
-        &kp Q        &kp X         &kp M               &hard_lt ITA_L C     &kp V              &kp K              &hard_lt ITA_L P     &kp COMMA             &kp DOT       &kp FSLH
-		    /*&          &*/           &base_lt NUM_L ESC  &base_lt NAV_L SPACE &kp TAB            &base_lt FUN_L RET &repeat_lt NUM_L 0   &bspc_del_lt SYM_L 0  /*&           &*/
+        &kp B        &kp L         &kp D               &kp W                &kp Z              &kp APOS           &kp F                   &kp LC(O)                 &kp U         &kp J
+        &elhm LALT N &elhm LGUI R  &lhm LSHIFT T       &lhm LCTRL S         &kp G              &kp Y              &rhm LCTRL H            &rhm RSHIFT A         &erhm LGUI E  &erhm LALT I
+        &kp Q        &kp X         &kp M               &kp C                &kp V              &kp K              &kp P                   &kp COMMA             &kp DOT       &kp FSLH
+		    /*&          &*/           &base_lt NUM_L ESC  &base_lt NAV_L SPACE &base_lt WIN_L TAB &base_lt FUN_L RET &colon_semi_lt NUM_L 0  &bspc_del_lt SYM_L 0  /*&           &*/
 			>;
 		};
 
 		gaming_layer {
 			bindings = <
-        &kp ESC      &kp Q       &kp TAB          &kp E                    &kp R              &none              &none                &none              &none         &none
-        &kp LSHIFT   &kp A       &kp W            &kp D                    &kp F              &none              &none                &none              &none         &none
-        &kp LCTRL    &kp H       &kp S            &kp C                    &kp V              &none              &none                &none              &none         &none
-        /*&          &*/         &kp SPACE        &base_lt GAM_NUM_L RET   &kp BSPC           &none              &none                &none              /*&           &*/
+        &kp ESC      &kp Q       &kp TAB          &kp E                    &kp R                     &none              &none                &none              &none         &none
+        &kp LSHIFT   &kp A       &kp W            &kp D                    &kp F                     &none              &none                &none              &none         &none
+        &kp LGUI     &kp H       &kp S            &kp C                    &kp V                     &none              &none                &none              &none         &none
+        /*&          &*/         &kp SPACE        &base_lt GAM_SCT_L RET   &base_lt GAM_NUM_L BSPC   &none              &none                &none              /*&           &*/
+			>;
+		};
+
+		gaming_shortcut_layer {
+			bindings = <
+        &trans       &trans      &trans           &trans            &trans             &trans             &trans               &trans             &trans        &trans
+        &trans       &kp LC(X)   &kp LC(C)        &kp LC(V)         &trans             &trans             &trans               &trans             &trans        &trans
+        &trans       &trans      &trans           &trans            &trans             &trans             &trans               &trans             &trans        &trans
+        /*&          &*/         &trans           &trans            &trans             &trans             &trans               &trans             /*&           &*/
 			>;
 		};
 
@@ -63,16 +72,16 @@
 			bindings = <
         &kp Q        &kp W         &kp E                 &kp R                &kp T              &kp Y              &kp U                &kp I              &kp O         &kp P
         &elhm LALT A &elhm LGUI S  &lhm LSHIFT D         &lhm LCTRL F         &kp G              &kp H              &rhm LCTRL J         &rhm RSHIFT K      &erhm LGUI L  &erhm LALT SEMI
-        &kp Z        &kp X         &kp C                 &hard_lt ITA_L V     &kp B              &kp N              &hard_lt ITA_L M     &kp COMMA          &kp DOT       &kp FSLH
+        &kp Z        &kp X         &kp C                 &hard_lt WIN_L V     &kp B              &kp N              &hard_lt WIN_L M     &kp COMMA          &kp DOT       &kp FSLH
         /*&          &*/           &trans                &trans               &trans             &trans             &trans               &trans             /*&           &*/
 			>;
 		};
 
 		sym_layer {
 			bindings = <
-        &none          &none         &none            &none              &none              &none           &none            &none               &none       &kp APOS
+        &none          &none         &none            &none              &kp CARET          &none           &none            &none               &none       &kp APOS
         &kp EXCL       &kp AT        &kp HASH         &kp DLLR           &kp PRCNT          &none           &rhm LCTRL PLUS  &rhm RSHIFT STAR    &sk LGUI    &sk LALT
-        &kp BSLH       &kp PIPE      &double_tilde    &kp AMPS           &double_grave      &none           &none            &trans              &trans      &kp FSLH
+        &kp BSLH       &kp PIPE      &kp TILDE        &kp AMPS           &kp GRAVE          &none           &none            &trans              &trans      &kp FSLH
         /*&            &*/           &kp ESC          &kp SPACE          &kp TAB            &kp RET         &kp BSPC         &base_lt NAV_L DEL  /*&           &*/
 			>;
 		};
@@ -81,7 +90,7 @@
 			bindings = <
         &none         &kp N9           &kp N8            &kp N7             &none              &none      &kp RPAR        &kp RIGHT_BRACE        &kp RBKT         &none
         &elhm LALT N0 &elhm LGUI N3    &lhm LSHIFT N2    &lhm LCTRL N1      &none              &none      &rhm LCTRL LPAR &rhm RSHIFT LEFT_BRACE &erhm LGUI LBKT  &erhm LALT BSLH
-        &none         &kp N6           &kp N5            &kp N4             &none              &none      &plus_star      &kp COMMA              &kp DOT          &kp FSLH
+        &none         &kp N6           &kp N5            &kp N4             &none              &none      &kp PLUS        &kp STAR               &kp DOT          &kp FSLH
         /*&           &*/              &kp MINUS         &trans             &kp UNDER          &trans     &trans          &trans                 /*&              &*/
 			>;
 		};
@@ -95,12 +104,21 @@
 			>;
 		};
 
-		nav_layer {
+    nav_layer {
 			bindings = <
-        &none            &none             &none             &none             &none              &none               &kp LG(MINUS)    &kp LG(PLUS)          &none           &none
-        &qhm LALT LC(Z)  &qhm LGUI LC(X)   &qhm LSHIFT LC(C) &qhm LCTRL LC(V)  &kp LA(LC(TAB))    &none               &kp LEFT         &kp UP                &kp RIGHT       &kp PG_UP
-        &none            &none             &kp LC(LS(C))     &kp LC(LS(V))     &none              &none               &kp HOME         &kp DOWN              &kp END         &kp PG_DN
-        /*&              &*/               &trans            &trans            &trans             &trans              &mo SYS_L        &trans                /*&             &*/
+        &none            &none             &none             &none             &none              &none               &kp LC(MINUS)       &kp LC(PLUS)          &none           &none
+        &qhm LALT LC(Z)  &qhm LGUI LC(X)   &qhm LSHIFT LC(C) &qhm LCTRL LC(V)  &kp LC(TAB)        &none               &kp LEFT            &kp UP                &kp RIGHT       &kp PG_UP
+        &none            &none             &kp LC(LS(C))     &kp LC(LS(V))     &none              &none               &kp LC(LEFT)        &kp DOWN              &kp LC(RIGHT)   &kp PG_DN
+        /*&              &*/               &trans            &trans            &trans             &trans              &mo SYS_L           &trans                /*&             &*/
+			>;
+		};
+
+    win_manager_layer {
+			bindings = <
+        &none            &none             &none             &none             &none              &none               &kp LA(LG(U))       &none                 &kp LA(LG(I))      &none
+        &none            &none             &none             &kp LCTRL         &none              &none               &kp LA(LG(LEFT))    &kp LA(LG(UP))        &kp LA(LG(RIGHT))  &none
+        &none            &none             &none             &none             &none              &none               &kp LA(LG(J))       &kp LA(LG(DOWN))      &kp LA(LG(K))      &none
+        /*&              &*/               &trans            &trans            &trans             &kp LA(LG(RET))     &kp LA(LG(C))       &kp LA(LG(BSPC))      /*&                &*/
 			>;
 		};
 
@@ -112,25 +130,6 @@
         /*&             &*/             &trans                   &trans             &trans           &trans              &trans           &trans                /*&             &*/
 			>;
 		};
-
-		ita_layer {
-			bindings = <
-        &none        &none         &none         &none              &none              &none               &none            &td_o                   &td_u          &none
-        &none        &none         &mo ITA_C_L   &none              &none              &none               &none            &td_a_lt ITA_C_L 0      &kp RA(F)      &td_i
-        &none        &none         &none         &c_e               &none              &none               &none            &none                   &none          &none
-        /*&          &*/           &kp ESC       &kp SPACE          &kp TAB            &kp RET             &kp BSPC         &kp DEL                  /*&           &*/
-			>;
-		};
-
-		ita_layer_capital {
-			bindings = <
-        &none         &none         &none         &none              &none              &none           &none        &td_o_cap               &td_u_cap              &none
-        &none         &none         &none         &none              &none              &none           &none        &td_a_cap               &td_e_cap              &td_i_cap
-        &none         &none         &none         &capital_c_e       &none              &none           &none        &none                   &none                  &none
-        /*&           &*/           &kp ESC       &kp SPACE          &kp TAB            &kp RET         &kp BSPC     &kp DEL                 /*&                    &*/
-			>;
-		};
-
 	};
 };
 
